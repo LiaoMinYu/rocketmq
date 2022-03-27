@@ -51,10 +51,18 @@ public class NamesrvStartup {
         main0(args);
     }
 
+    /**
+     * 从main0方法中可以看出，启动NameServer只有两个步骤，
+     * 第一步是创建NamesrvController实例对象，
+     * 第二步调用NamesrvStartup的start方法启动controller。
+     */
     public static NamesrvController main0(String[] args) {
 
         try {
+            // 第一步：根据命令行参数创建一个NamesrvController对象，内部包含各种参数加载设置等操作
+            // 并设置了namesrv的启动端口
             NamesrvController controller = createNamesrvController(args);
+            // 第二步：启动controller
             start(controller);
             String tip = "The Name Server boot success. serializeType=" + RemotingCommand.getSerializeTypeConfigInThisServer();
             log.info(tip);
